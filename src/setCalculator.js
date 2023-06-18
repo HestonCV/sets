@@ -19,13 +19,17 @@ class SetCalculator {
   }
 
   calculate() {
+    // checks for open all open parenthesis and replaces it with
+    // a set object if found
     for (let i = 0; i < this.inputs.length; i += 1) {
       if (this.inputs[i] === "open-parenthesis") {
+        // computes using the middle term, which should be an operator
         const result = this.compute(i + 2);
         this.inputs.splice(i, i + 5, result);
         i = 0;
       }
     }
+    // continue computing until the inputs has only the final result left
     while (this.inputs.length !== 1) {
       const result = this.compute(1);
       this.inputs.splice(0, 3, result);
@@ -40,6 +44,8 @@ class SetCalculator {
     return null;
   }
 
+  // compute takes the index of the operator, then performs the relevant
+  // calculation on the left and right sets
   compute(i) {
     const operators = [
       "union",
@@ -70,8 +76,11 @@ class SetCalculator {
   }
 
   computeUnion(setA, setB) {
+    // if the sets exists
     if (setA.items && setB.items) {
       const setC = new CustomSet("C", false);
+
+      // add all items from A and B to C
       setA.items.forEach((item) => {
         setC.add(item);
       });
@@ -84,8 +93,11 @@ class SetCalculator {
   }
 
   computeIntersection(setA, setB) {
+    // if sets exist
     if (setA.items && setB.items) {
       const setC = new CustomSet("C", false);
+
+      // add item to C if it is found in both A and B
       setA.items.forEach((itemA) => {
         if (setB.has(itemA)) {
           setC.add(itemA);
@@ -97,8 +109,11 @@ class SetCalculator {
   }
 
   computeDifference(setA, setB) {
+    // if sets exist
     if (setA.items && setB.items) {
       const setC = new CustomSet("C", false);
+
+      // for each item in A, if not found in B, add to C
       setA.items.forEach((itemA) => {
         if (!setB.has(itemA)) {
           setC.add(itemA);
@@ -110,7 +125,9 @@ class SetCalculator {
   }
 
   computeSymmetricalDifference(setA, setB) {
+    // if sets exist
     if (setA.items && setB.items) {
+      // symmetrical difference = (A-B) U (B-A)
       return this.computeUnion(
         this.computeDifference(setA, setB),
         this.computeDifference(setB, setA)

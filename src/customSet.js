@@ -3,6 +3,8 @@ import setCalculator from "./setCalculator";
 
 export default class CustomSet {
   constructor(name, create) {
+    // if create is true, html elements will be created
+    // this is false when used for calculations only
     this.create = create;
     this.name = name;
     this.items = [];
@@ -52,15 +54,13 @@ export default class CustomSet {
     });
 
     // create add element button
-    // create add element modal
-
     const addElementButton = createElement({
       element: "span",
       className: "add-element",
       textContent: "+",
       parent: this.element,
     });
-
+    // create add element modal
     const addElementForm = createElement({
       element: "form",
       parent: this.element,
@@ -114,9 +114,6 @@ export default class CustomSet {
   add(value) {
     if (!this.has(value)) {
       this.items.push(value);
-      if (this.create) {
-        // TODO: update UI
-      }
     }
   }
 

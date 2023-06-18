@@ -11,6 +11,7 @@ class UIController {
   initEventListeners() {
     // add set button
     this.addSetButton.addEventListener("click", () => {
+      // modal toggle
       this.addSetForm.style.display =
         this.addSetForm.style.display === "flex" ? "none" : "flex";
     });
@@ -20,6 +21,7 @@ class UIController {
       e.preventDefault();
       const input = document.querySelector(".add-set-container > form > input");
       const setName = input.value;
+      // create new set with value true, so dom elements will be created
       const setA = new CustomSet(setName, true);
       input.value = "";
       this.addSetForm.style.display = "none";
@@ -49,6 +51,7 @@ class UIController {
         this.displayElement.textContent += " = ";
         this.displayElement.textContent += `{ ${result.join(", ")} }`;
       } else {
+        // if result is null
         this.displayElement.textContent = "ERROR";
       }
       setCalculator.clear();
@@ -78,6 +81,7 @@ class UIController {
 
     buttons.forEach((button) => {
       button.addEventListener("click", () => {
+        // if display element shows calculation or error, clear it
         if (
           this.displayElement.textContent.includes("=") ||
           this.displayElement.textContent.includes("E")

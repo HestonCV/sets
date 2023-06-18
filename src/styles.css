@@ -123,6 +123,7 @@ body {
   max-height: 30px;
 }
 
+/* display styles */
 .display {
   display: flex;
   padding: 10px;
@@ -216,6 +217,7 @@ body {
   flex: 1;
 }
 
+/* sets under keyboard styles */
 .sets {
   display: flex;
   gap: 10px;
