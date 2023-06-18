@@ -78,6 +78,12 @@ class UIController {
 
     buttons.forEach((button) => {
       button.addEventListener("click", () => {
+        if (
+          this.displayElement.textContent.includes("=") ||
+          this.displayElement.textContent.includes("E")
+        ) {
+          this.displayElement.textContent = "";
+        }
         this.displayElement.textContent += button.textContent;
         setCalculator.addInput(button.id);
       });

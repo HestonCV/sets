@@ -97,6 +97,15 @@ export default class CustomSet {
     });
     this.keyboardElement.addEventListener("click", () => {
       const displayElement = document.getElementById("display-text");
+
+      // if the display element shows calculation or error, clear it
+      if (
+        displayElement.textContent.includes("=") ||
+        displayElement.textContent.includes("E")
+      ) {
+        console.log("test");
+        displayElement.textContent = "";
+      }
       displayElement.textContent += this.name;
       setCalculator.addInput(this);
     });
