@@ -13,14 +13,21 @@
     <div class="content-container">
       <div class="header">Set Operations</div>
       <div class="content">
-        <div class="add-set" id="add-set">Add Set +</div>
+        <div class="add-set-container">
+          <div class="add-set" id="add-set">Add Set +</div>
+          <form>
+            <label for="name">Name</label>
+            <input type="text" id="name">
+          </form>
+        </div>
         <div class="set-container">
           <div class="set">
             <span class="delete-set">-</span>
-            <span class="setName">A</span>
+            <span class="set-name">A</span>
             <span>=</span>
             <span class="set-elements">{ 1, 6, test, 10 }</span>
-            <span class="add-element">+</span></div>
+            <span class="add-element">+</span>
+          </div>
         </div>
         <div class="display">
           <div class="display-text" id="display-text">A ∪ B = { 1, 2, 9, Monkey }</div>
@@ -36,10 +43,7 @@
           <div class="intersection" id="intersection">∩</div>
           <div class="symmetrical-difference" id="symmetrical-difference">⊕</div>
           <div class="difference" id="difference">−</div>
-          <div class="subset" id="subset">⊆</div>
-          <div class="proper-subset" id="proper-subset">⊂</div>
           <div class="open-parenthesis" id="open-parenthesis">(</div>
-          <div class="set-button" id="set">Set</div>
           <div class="close-parenthesis" id="close-parenthesis">)</div>
         </div>
         <div class="sets">
