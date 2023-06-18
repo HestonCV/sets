@@ -103,7 +103,6 @@ export default class CustomSet {
         displayElement.textContent.includes("=") ||
         displayElement.textContent.includes("E")
       ) {
-        console.log("test");
         displayElement.textContent = "";
       }
       displayElement.textContent += this.name;
