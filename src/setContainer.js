@@ -16,3 +16,7 @@ class SetContainer {
     });
   }
 }
+
+const setContainer = new SetContainer();
+
+export default setContainer;

@@ -1,18 +1,26 @@
 import "./styles.css";
 import CustomSet from "./customSet";
+import setCalculator from "./setCalculator";
+import uiController from "./uiController";
 
-const addSetButton = document.getElementById("add-set");
-const addSetForm = document.querySelector(".add-set-container > form");
-addSetButton.addEventListener("click", () => {
-  addSetForm.style.display =
-    addSetForm.style.display === "flex" ? "none" : "flex";
-});
+uiController.initEventListeners();
 
-addSetForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const input = document.querySelector(".add-set-container > form > input");
-  const setName = input.value;
-  const setA = new CustomSet(setName);
-  input.value = "";
-  addSetForm.style.display = "none";
-});
+/* const setA = new CustomSet("A", false);
+setA.add(1);
+setA.add(5);
+setA.add("Blue");
+
+const setB = new CustomSet("B", false);
+setB.add(3);
+setB.add(1);
+setB.add("Purple");
+setB.add("Blue");
+
+const setC = new CustomSet("C", false);
+setC.add(12);
+setC.add(1);
+setC.add(4);
+setC.add("Blue");
+
+setCalculator.inputs = [setA, "intersection", "(", setB, "union", setC, ")"];
+setCalculator.calculate(); */

@@ -47,6 +47,10 @@ body {
   padding: 2px;
 }
 
+.set input {
+  width: 50px;
+}
+
 .add-element,
 .delete-set,
 .add-set {
@@ -145,7 +149,7 @@ body {
   padding: 10px;
   border-radius: 3px;
   gap: 3px;
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   background-color: #db3f59;
   color: white;
   cursor: pointer;

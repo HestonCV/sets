@@ -1,7 +1,9 @@
 import createElement from "./createElement";
+import setCalculator from "./setCalculator";
 
 export default class CustomSet {
-  constructor(name) {
+  constructor(name, create) {
+    this.create = create;
     this.name = name;
     this.items = [];
     this.element = null;
@@ -10,8 +12,10 @@ export default class CustomSet {
   }
 
   init() {
-    this.createSetElement();
-    this.addKeyboardSetButton();
+    if (this.create) {
+      this.createSetElement();
+      this.addKeyboardSetButton();
+    }
   }
 
   createSetElement() {
@@ -40,7 +44,7 @@ export default class CustomSet {
     createElement({ element: "span", textContent: "=", parent: this.element });
 
     // create set elements list
-    createElement({
+    const setElementsDisplay = createElement({
       element: "span",
       className: "set-elements",
       textContent: "{}",
@@ -48,14 +52,36 @@ export default class CustomSet {
     });
 
     // create add element button
+    // create add element modal
+
     const addElementButton = createElement({
       element: "span",
       className: "add-element",
       textContent: "+",
       parent: this.element,
     });
+
+    const addElementForm = createElement({
+      element: "form",
+      parent: this.element,
+    });
+    addElementForm.style.display = "none";
+    const addElementInput = createElement({
+      element: "input",
+      parent: addElementForm,
+    });
+    addElementInput.type = "text";
+
+    addElementForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const input = this.element.querySelector("input");
+      this.add(input.value);
+      setElementsDisplay.textContent = `{ ${this.items.join(", ")} }`;
+      input.value = "";
+    });
     addElementButton.addEventListener("click", () => {
-      // TODO: add element to set
+      addElementForm.style.display =
+        addElementForm.style.display === "none" ? "flex" : "none";
     });
 
     const setContainer = document.querySelector(".set-container");
@@ -69,11 +95,19 @@ export default class CustomSet {
       textContent: this.name,
       parent: keyboardSets,
     });
+    this.keyboardElement.addEventListener("click", () => {
+      const displayElement = document.getElementById("display-text");
+      displayElement.textContent += this.name;
+      setCalculator.addInput(this);
+    });
   }
 
   add(value) {
     if (!this.has(value)) {
       this.items.push(value);
+      if (this.create) {
+        // TODO: update UI
+      }
     }
   }
 
